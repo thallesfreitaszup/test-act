@@ -1,0 +1,22 @@
+name: 'Sign release action'
+description: 'Sign your release with the gpg key'
+inputs:
+  private_key: # Key gpg
+    description: 'Private gpg key'
+    required: true
+  passphrase:  #Passphrase to use gpg key
+    description: 'passphrase of your private gpg key'
+    required: true
+  token: # Token github
+    description: 'github token'
+    required: true
+  public_key: # Key gpg
+    description: 'Used to verify if signature is valid'
+    required: false
+#
+#outputs:
+#  time: # id da saída
+#    description: 'The time we greeted you'
+runs:
+  using: 'node12'
+  main: 'main.js'
