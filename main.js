@@ -33,5 +33,5 @@ const openpgp = require("openpgp");
         core.error(`Error running action `, errorMessage)
         core.setFailed(`Error: ${errorMessage}`)
     }
-
+    console.log('not a test')
 })()
