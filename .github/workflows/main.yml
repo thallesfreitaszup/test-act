@@ -25,12 +25,20 @@ jobs:
       - uses: actions/checkout@v2
       - name: Make script executable
         run: chmod +x ./bash.sh
-      - name: Sign release action
-        run: ./bash.sh
+      -
+        name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@1c6a9e9d3594f2d743f1b1dd7669ab0dfdffa922 # v3.1.0
+        with:
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+      -
+        name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@5a54d7e660bda43b405e8463261b3d25631ffe86 # v2.5.0
+        with:
+          version: latest
+          args: release --rm-dist
         env:
-          TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PASSPHRASE: ${{secrets.PASSPHRASE}}
-          PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
-          OWNER: thallesfreitaszup
-          REPO: test-act
-          ASSET_NAME: ${{ github.event.release.tag_name }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
+          VERSION_LDFLAGS: ${{ steps.ldflags.outputs.version_flags }}
