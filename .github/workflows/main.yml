@@ -32,5 +32,5 @@ jobs:
           PASSPHRASE: ${{secrets.PASSPHRASE}}
           PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
           OWNER: thallesfreitaszup
-          REPO: actions-test
+          REPO: test-act
           ASSET_NAME: ${{ github.event.release.tag_name }}
