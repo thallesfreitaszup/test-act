@@ -11,7 +11,6 @@ curl -fL "$TARBALL_URL" > "$REPO_TAG.tar.gz"
 
 gpg --pinentry-mode loopback --passphrase $PASSPHRASE --batch --quiet --yes --import private.key
 gpg --list-keys --with-colons thalles.freitas@zup.com.br | awk -F: '/^pub:/ { print $5 }' > public.txt
-
 gpg --armor --pinentry-mode loopback --passphrase $PASSPHRASE --batch --quiet --yes --detach-sign "$REPO_TAG.tar.gz"
 ASSETS_UPLOAD_URL="https://uploads.github.com/repos/$OWNER/$REPO/releases/$RELEASE_ID/assets?name=$REPO_TAG.tar.gz.asc"
 curl "$ASSETS_UPLOAD_URL" -H "accept: application/vnd.github.v3+json" \
