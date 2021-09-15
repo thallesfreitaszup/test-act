@@ -14,6 +14,6 @@ gpg --armor --pinentry-mode loopback --passphrase $PASSPHRASE --batch --quiet --
 ASSETS_UPLOAD_URL="https://uploads.github.com/repos/$OWNER/$REPO/releases/$RELEASE_ID/assets?name=$REPO_TAG.tar.gz.asc"
 curl "$ASSETS_UPLOAD_URL" -H "accept: application/vnd.github.v3+json" \
  -H "Content-Type: application/json" \
- -H  "authorization: token  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" \
+ -H  "authorization: token  $TOKEN" \
  --data-binary @"$REPO_TAG.tar.gz.asc"
 
