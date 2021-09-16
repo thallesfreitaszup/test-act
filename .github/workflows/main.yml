@@ -28,3 +28,7 @@ jobs:
       -
         name: Run script
         run: ./bash.sh
+        env:
+          TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PASSPHRASE: ${{secrets.PASSPHRASE}}
+          PRIVATE_KEY: ${{secrets.PRIVATE_KEY}}
